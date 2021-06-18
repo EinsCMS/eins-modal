@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><title>Simple to use Modal/ Alert/ Dialog with no javascript knowledge required</title><style>.wrapper{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            padding-top: 30px;
+        }
+        .wrapper > * {
+            margin-left: 5px;
+            margin-right: 5px;
+            align-self: center;
+        }</style><script defer="defer" src="js/eins-modal.min.js"></script><link href="css/eins-modal.min.css" rel="stylesheet"></head><body><div style="width: 100%; text-align: center"><h1>Don't forget to look into the console!</h1></div><div class="wrapper"><button class="eins-modal-button" data-modal-id="default">Open Default</button> <button class="eins-modal-button" data-modal-id="dark">Open Dark</button> <button class="eins-modal-button" data-modal-id="long">Open Long Content</button> <button id="withJS">Open with JS</button> <button id="withJS2">Open with JS 2</button> <button id="withJS3">Open with JS 3</button> <button id="dynamic">Open dynamic Modal</button></div><div id="default" class="eins-modal"><div class="eins-modal-content"><div class="eins-modal-close"></div><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p><button class="eins-modal-close-button">OK</button></div></div><div id="dark" class="eins-modal eins-modal-dark"><div class="eins-modal-content"><div class="eins-modal-close"></div><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p><button class="eins-modal-close-button">OK</button></div></div><div id="long" class="eins-modal eins-modal-dark"><div class="eins-modal-content"><div class="eins-modal-close"></div><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p><p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur</p><button class="eins-modal-close-button">OK</button></div></div><div id="openedWithGlobal" class="eins-modal" data-options="backdropClose: false"><div class="eins-modal-content"><p>This Modal is opened with window.einsModal.open()</p><p>A new modal will open in 3 seconds.</p></div></div><div id="openedAfterGlobal" class="eins-modal" data-options="backdropClose: false"><div class="eins-modal-content"><p>This modal will close in 2 seconds.</p></div></div><div id="withJsModal" class="eins-modal"><div class="eins-modal-content"><div class="eins-modal-close"></div><p>This modal is opened programatically with JS.</p><button class="eins-modal-close-button">OK</button></div></div><script>(function(){
+
+        var events = ['show', 'shown', 'hide', 'hidden']
+        function addEventsToModal(modal, func){
+            for(var i = 0; i < events.length; i+=1){
+                var event = events[i]
+                modal.addEventListener(event + '.eins.modal', func)
+            }
+        }
+
+        function logEventObject(e){
+            console.debug('EVENT OBJECT:')
+            console.debug(e)
+        }
+
+        function addLogEventHandlerToModal(modal){
+            addEventsToModal(modal, logEventObject)
+        }
+
+        function addModal(){
+            // create modal
+            var modal = document.createElement('div');
+            modal.className = "eins-modal"
+            modal.id = "dynamicModal"
+
+            // create modal content
+            var modalContent = document.createElement('div')
+            modalContent.className = "eins-modal-content"
+
+            // create close icon
+            var closeIcon = document.createElement('div')
+            closeIcon.className = 'eins-modal-close'
+
+            // create content
+            var content = document.createElement('div')
+            content.innerHTML = "<p>This modal is created with JS</p>"
+
+            // append
+            modalContent.appendChild(closeIcon)
+            modalContent.appendChild(content)
+
+            modal.appendChild(modalContent)
+
+            document.body.appendChild(modal)
+
+            // create button
+            var button = document.getElementById('dynamic')
+
+            // assign button to modal
+            window.einsModal.add(modal, button)
+
+            // log events of modal
+            addLogEventHandlerToModal(modal)
+        }
+
+        // click on "Open with JS" Button
+        document.getElementById('withJS').addEventListener('click', function(){
+            document.getElementById('withJsModal').modal('show')
+        })
+
+        // click on "Open with JS 2" Button
+        document.getElementById('withJS2').addEventListener('click', function(){
+            window.einsModal.open('withJsModal')
+        })
+
+        // click on "Open with JS 2" Button
+        document.getElementById('withJS3').addEventListener('click', function(){
+            window.einsModal.open(document.getElementById('withJsModal'))
+        })
+
+        window.addEventListener('global.eins.modal', function(){
+            // log global object
+            console.debug("GLOBAL 'einsModal' OBJECT:")
+            console.debug(window.einsModal)
+
+            // add dynamic modal
+            addModal()
+            window.einsModal.open('openedWithGlobal')
+        })
+
+        // start sequence
+        document.getElementById('openedWithGlobal').addEventListener('shown.eins.modal', function(){
+            setTimeout(function(){
+                window.einsModal.open(document.getElementById('openedAfterGlobal'))
+            }, 3000)
+        })
+        document.getElementById('openedAfterGlobal').addEventListener('shown.eins.modal', function(){
+            setTimeout(function(){
+                window.einsModal.close()
+            }, 2000)
+        })
+
+        // log all events of all modals
+        var modals = document.getElementsByClassName('eins-modal');
+        for(let i = 0; i < modals.length; i+=1){
+            var modal = modals[i]
+            addLogEventHandlerToModal(modal)
+        }
+    })()</script></body></html>
