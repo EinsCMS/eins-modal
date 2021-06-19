@@ -43,20 +43,28 @@ export default {
     global: null
   },
   /**
-   * Currently open modal element.
-   * @var {HTMLElement|null}
+   * Current State
    */
-  currentOpenModal: null,
-  /**
-   * Options object used for current action.
-   * @var {object|null}
-   */
-  currentOptions: null,
-  /**
-   * If any action is caused by a click, the clicked Element will be stored here.
-   * @var {HTMLElement|null}
-   */
-  currentTrigger: null,
+  current: {
+    /**
+     * Currently open modal element.
+     * @var {HTMLElement|null}
+     */
+    openModal: null,
+
+    /**
+     * Options object used for current action.
+     * @var {object|null}
+     */
+    options: null,
+    /**
+     * If any action is caused by a click, the clicked Element will be stored here.
+     * @var {HTMLElement|null}
+     */
+    trigger: null,
+    // used for hiding and showing scrollbar
+    modalPaddingRight: null
+  },
   /**
    * Global event handler to close current open modal.
    * @var {function|null}
@@ -133,10 +141,10 @@ export default {
         if (e.target !== this) return
         if (EinsModal.backdrop.getAttribute('listener') === 'true') {
           EinsModal.removeListener(EinsModal.backdrop, EinsModal.closeModalEventHandler)
-          EinsModal.removeListener(EinsModal.currentOpenModal, EinsModal.closeModalEventHandler)
+          EinsModal.removeListener(EinsModal.current.openModal, EinsModal.closeModalEventHandler)
           EinsModal.backdrop.setAttribute('listener', 'false')
         }
-        EinsModal.currentTrigger = this
+        EinsModal.current.trigger = this
         EinsModal.close(null)
       }
     }
@@ -154,8 +162,8 @@ export default {
 
         const modalOptions = modalToOpen.getAttribute('data-options')
 
-        EinsModal.currentOptions = EinsModal.getOptions([ modalOptions, buttonOptions ])
-        EinsModal.currentTrigger = this
+        EinsModal.current.options = EinsModal.getOptions([ modalOptions, buttonOptions ])
+        EinsModal.current.trigger = this
 
         // open new modal
         EinsModal.open(modalToOpen)
@@ -232,7 +240,7 @@ export default {
         const modalToOpen =
           typeof modalElementOrId === 'string' ? document.getElementById(modalElementOrId) : modalElementOrId
         const modalOptions = modalToOpen.getAttribute('data-options')
-        EinsModal.currentOptions = EinsModal.getOptions([ modalOptions, options ])
+        EinsModal.current.options = EinsModal.getOptions([ modalOptions, options ])
         EinsModal.open(modalToOpen)
       },
       /**
@@ -240,7 +248,7 @@ export default {
        * @param {object|null} options 
        */
       close(options = null) {
-        EinsModal.currentOptions = EinsModal.getOptions([ EinsModal.currentOptions, options ])
+        EinsModal.current.options = EinsModal.getOptions([ EinsModal.current.options, options ])
         EinsModal.close()
       },
       /**
@@ -359,6 +367,48 @@ export default {
     return this.modalClass + this.classSuffixes[classSuffixKey]
   },
   /**
+   * Hide scrollbar to prevent bugs with it with some animations
+   * @param {HTMLElement} modal 
+   * @param {HTMLElement} modalContent 
+   * @returns {object}
+   */
+  hideScrollbar(modal, modalContent) {
+    const modalContentStyle = window.getComputedStyle(modalContent)
+    const modalContentMarginRight = parseInt(modalContentStyle.getPropertyValue('margin-right'), 10)
+    const modalContentMarginLeft = parseInt(modalContentStyle.getPropertyValue('margin-left'), 10)
+
+    const modalStyle = window.getComputedStyle(modal)
+    const modalPaddingLeft = parseInt(modalStyle.getPropertyValue('padding-left'), 10)
+    const modalPaddingRight = parseInt(modalStyle.getPropertyValue('padding-right'), 10)
+
+    const scrollbarGap =
+      document.documentElement.clientWidth -
+      (modalContentMarginRight +
+        modalContentMarginLeft +
+        modalContent.offsetWidth +
+        modalPaddingLeft +
+        modalPaddingRight)
+
+    // if there is a scrollbar we add a padding to prevent flickering when hiding scrollbar
+    if (scrollbarGap > 0) {
+      modal.style.paddingRight = `${modalPaddingRight + scrollbarGap}px`
+    }
+
+    // disable scrollbar to fix scrollbar bug on some animations
+    modal.style.overflow = 'hidden'
+
+    this.current.modalPaddingRight = modalPaddingRight
+  },
+  /**
+   * Show scrollbar and restore previous state
+   * @param {HTMLElement} modal 
+   */
+  showScrollbar(modal) {
+    modal.style.paddingRight = this.current.modalPaddingRight + 'px'
+    modal.style.overflow = 'auto'
+    this.current.modalPaddingRight = null
+  },
+  /**
    * Helper function to open the modal.
    * @param {HTMLElement} modalToOpen 
    */
@@ -374,7 +424,7 @@ export default {
       return
     }
 
-    const options = EinsModal.currentOptions
+    const { options } = EinsModal.current
 
     if (options === null || !('openTransition' in options) || !('openTransitionDuration' in options)) {
       EinsModal.log('error', 'Current options are malformed.')
@@ -389,20 +439,10 @@ export default {
     modalToOpen.style.display = 'block'
     modalContent.style.display = 'block' // needed for getComputedStyle
 
-    this.events.show.relatedTarget = this.currentTrigger
+    this.events.show.relatedTarget = this.current.trigger
     modalToOpen.dispatchEvent(this.events.show)
 
-    const modalContentStyle = window.getComputedStyle(modalContent)
-    const modalContentHeight =
-      modalContent.offsetHeight +
-      parseInt(modalContentStyle.getPropertyValue('margin-top'), 10) +
-      parseInt(modalContentStyle.getPropertyValue('margin-bottom'), 10)
-
-    // if overflow is auto a weird scrollbar appears on some animations
-    // we add 15 (pixels) to have a little room for the animation.
-    if (modalContentHeight < window.innerHeight + 15) {
-      modalToOpen.style.overflow = 'hidden'
-    }
+    EinsModal.hideScrollbar(modalToOpen, modalContent)
 
     Velocity(modalContent, options.openTransition, {
       duration: options.openTransitionDuration,
@@ -410,11 +450,15 @@ export default {
         // changing display is repeated due to fixing a bug..
         EinsModal.backdrop.style.display = 'block'
         modalToOpen.style.display = 'block'
-        modalToOpen.style.overflow = 'auto'
-        EinsModal.currentOpenModal = modalToOpen
-        EinsModal.events.shown.relatedTarget = EinsModal.currentTrigger
+
+        EinsModal.showScrollbar(modalToOpen)
+
+        // dispatch shown event
+        EinsModal.events.shown.relatedTarget = EinsModal.current.trigger
         modalToOpen.dispatchEvent(EinsModal.events.shown)
-        EinsModal.currentTrigger = null
+        // set current state
+        EinsModal.current.openModal = modalToOpen
+        EinsModal.current.trigger = null
       }
     })
   },
@@ -431,13 +475,13 @@ export default {
     const closeIcons = modalToOpen.querySelectorAll('.' + EinsModal.getClass('closeIcon'))
     EinsModal.addListeners(closeIcons, this.closeModalEventHandler)
 
-    if (this.currentOptions === null) {
+    if (this.current.options === null) {
       EinsModal.log('warn', 'Something went wrong.. Could not find current options. Using default options instead.')
-      this.currentOptions = this.getOptions()
+      this.current.options = this.getOptions()
     }
 
     // eslint-disable-next-line eqeqeq
-    if (this.currentOptions.backdropClose == 'true') {
+    if (this.current.options.backdropClose == 'true') {
       EinsModal.addListener(EinsModal.backdrop, this.closeModalEventHandler)
       EinsModal.addListener(modalToOpen, this.closeModalEventHandler)
       EinsModal.backdrop.setAttribute('listener', 'true')
@@ -454,38 +498,46 @@ export default {
    * @returns {boolean}
    */
   close(modalToOpen = null) {
-    if (this.currentOpenModal === null) {
+    if (this.current.openModal === null) {
       return false
     }
 
     const EinsModal = this
 
-    const options = EinsModal.currentOptions !== null ? EinsModal.currentOptions : { ...EinsModal.defaultOptions }
+    const options = EinsModal.current.options !== null ? EinsModal.current.options : { ...EinsModal.defaultOptions }
 
-    const modalContent = EinsModal.getModalContentElement(EinsModal.currentOpenModal)
+    const modalContent = EinsModal.getModalContentElement(EinsModal.current.openModal)
 
     if (modalContent === null) {
       EinsModal.log('error', 'No modal content found')
       return false
     }
 
-    this.events.hide.relatedTarget = this.currentTrigger
-    EinsModal.currentOpenModal.dispatchEvent(this.events.hide)
+    this.events.hide.relatedTarget = this.current.trigger
+    EinsModal.current.openModal.dispatchEvent(this.events.hide)
+
+    EinsModal.hideScrollbar(EinsModal.current.openModal, modalContent)
 
     Velocity(modalContent, options.closeTransition, {
       duration: options.closeTransitionDuration,
       complete() {
-        EinsModal.events.hidden.relatedTarget = EinsModal.currentTrigger
-        EinsModal.currentOpenModal.dispatchEvent(EinsModal.events.hidden)
-        EinsModal.currentTrigger = null
+        // dispatch hidden event
+        EinsModal.events.hidden.relatedTarget = EinsModal.current.trigger
+        EinsModal.current.openModal.dispatchEvent(EinsModal.events.hidden)
+        // set current state
+        EinsModal.current.trigger = null
+
+        EinsModal.showScrollbar(EinsModal.current.openModal)
+
+        // open a new modal without hiding backdrop for smooth transition
         if (modalToOpen !== null) {
           EinsModal.openHelper(modalToOpen, options)
           return
         }
         // hide backdrop
         EinsModal.backdrop.style.display = 'none'
-        EinsModal.currentOpenModal.style.display = 'none'
-        EinsModal.currentOpenModal = null
+        EinsModal.current.openModal.style.display = 'none'
+        EinsModal.current.openModal = null
         clearAllBodyScrollLocks()
       }
     })
@@ -499,7 +551,7 @@ export default {
     const EinsModal = this
     const closure = function(methodName, options = null) {
       const dataOptions = this.getAttribute('data-options')
-      EinsModal.currentOptions = EinsModal.getOptions([ dataOptions, options ])
+      EinsModal.current.options = EinsModal.getOptions([ dataOptions, options ])
       switch (methodName) {
         case 'show':
           EinsModal.open(this)
@@ -508,7 +560,7 @@ export default {
           EinsModal.close(null)
           break
         case 'toggle':
-          if (EinsModal.currentOpenModal === null) {
+          if (EinsModal.current.openModal === null) {
             EinsModal.open(this)
           } else {
             EinsModal.close(null)
@@ -556,9 +608,9 @@ export default {
 
       const modalOptions = modalToOpen.getAttribute('data-options')
 
-      EinsModal.currentOptions = EinsModal.getOptions([ modalOptions, buttonOptions ])
+      EinsModal.current.options = EinsModal.getOptions([ modalOptions, buttonOptions ])
 
-      EinsModal.currentTrigger = this
+      EinsModal.current.trigger = this
 
       // open new modal
       EinsModal.open(modalToOpen)
