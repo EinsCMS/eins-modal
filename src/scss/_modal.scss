@@ -34,6 +34,7 @@
   width: 100%;
   max-width: $width;
   margin: 15px auto;
+  position: relative;
 
   background: $background;
   border: $border-width $border-style $border-color;
@@ -76,15 +77,6 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  // display: block;
-  // cursor: pointer;
-  // color: $close-color;
-  // font-size: $close-icon-size;
-  // width: $close-icon-size;
-  // margin-top: -5px;
-  // margin-left: auto;
-  // padding: 5px 1px;
 
   position: absolute;
   display: block;
