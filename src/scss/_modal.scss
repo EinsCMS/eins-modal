@@ -65,19 +65,53 @@
 }
 
 .#{$modal-close-class} {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'eins-modal-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // display: block;
+  // cursor: pointer;
+  // color: $close-color;
+  // font-size: $close-icon-size;
+  // width: $close-icon-size;
+  // margin-top: -5px;
+  // margin-left: auto;
+  // padding: 5px 1px;
+
+  position: absolute;
+  display: block;
   cursor: pointer;
-  font-size: $close-font-size;
-  font-weight: $close-font-weight;
   color: $close-color;
+
+  font-size: $close-icon-size;
+  width: $close-icon-size;
+
+  padding: $close-padding;
+
+  top: $close-top;
+  right: $close-right;
+  bottom: $close-bottom;
+  left: $close-left;
+
+  border: $close-border-width solid $close-border-color;
+  border-radius: $close-border-radius;
+
   &:hover {
     color: $close-color-hover; //#4a4a4a;
+    border-color: $close-border-color-hover;
   }
   &:after {
-    content: '\2715';
+    content: "\e900";
   }
-  margin-left: $close-margin-left;
-  // float:right;
-  display: inline-block;
 }
 
 .#{$dark-theme-class} > .#{$modal-class} {
@@ -86,8 +120,10 @@
   background: $background-dark;
   .#{$modal-close-class} {
     color: $close-color-dark;
+    border-color: $close-border-color-dark;
     &:hover {
       color: $close-color-hover-dark;
+      border-color: $close-border-color-hover-dark;
     }
   }
 }

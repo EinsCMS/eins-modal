@@ -17,15 +17,23 @@ $backdrop-z-index: 20000 !default;
 /* Wrapper */
 $wrapper-padding: 15px !default;
 
-/* Close cross */
-$close-font-size: 23px !default;
-$close-font-weight: bold !default;
-$close-margin-left: 95% !default;
+/* Close icon */
+$close-icon-size: 16px !default;
+
+$close-padding: 6px !default;
+
+$close-top: 0;
+$close-right: 0;
+$close-bottom: auto;
+$close-left: auto;
+
+$close-border-width: 2px;
+$close-border-radius: 6px;
 
 /* Modal General */
 $max-width: 400px !default;
 
-$padding: 15px !default;
+$padding: 30px !default;
 $margin: 10% auto !default;
 
 $border-radius: 6px !default;
@@ -36,12 +44,16 @@ $border-style: solid !default;
 $font-color: #000 !default;
 $border-color: #000 !default;
 $background: #fff !default;
-$close-color: #000 !default;
-$close-color-hover: #666 !default;
+$close-color: #8f8f8f !default;
+$close-color-hover: #f27474 !default;
+$close-border-color: #f0f0f0;
+$close-border-color-hover: #dedede;
 
 // dark theme
 $font-color-dark: #fff !default;
 $border-color-dark: #000 !default;
 $background-dark: #262626 !default;
 $close-color-dark: #b5b5b5 !default;
-$close-color-hover-dark: #fff !default;
+$close-color-hover-dark: #f27474 !default;
+$close-border-color-dark: #333333;
+$close-border-color-hover-dark: #404040;
