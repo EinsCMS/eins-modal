@@ -387,9 +387,22 @@ export default {
 
     EinsModal.backdrop.style.display = 'block'
     modalToOpen.style.display = 'block'
+    modalContent.style.display = 'block' // needed for getComputedStyle
 
     this.events.show.relatedTarget = this.currentTrigger
     modalToOpen.dispatchEvent(this.events.show)
+
+    const modalContentStyle = window.getComputedStyle(modalContent)
+    const modalContentHeight =
+      modalContent.offsetHeight +
+      parseInt(modalContentStyle.getPropertyValue('margin-top'), 10) +
+      parseInt(modalContentStyle.getPropertyValue('margin-bottom'), 10)
+
+    // if overflow is auto a weird scrollbar appears on some animations
+    // we add 15 (pixels) to have a little room for the animation.
+    if (modalContentHeight < window.innerHeight + 15) {
+      modalToOpen.style.overflow = 'hidden'
+    }
 
     Velocity(modalContent, options.openTransition, {
       duration: options.openTransitionDuration,
@@ -397,6 +410,7 @@ export default {
         // changing display is repeated due to fixing a bug..
         EinsModal.backdrop.style.display = 'block'
         modalToOpen.style.display = 'block'
+        modalToOpen.style.overflow = 'auto'
         EinsModal.currentOpenModal = modalToOpen
         EinsModal.events.shown.relatedTarget = EinsModal.currentTrigger
         modalToOpen.dispatchEvent(EinsModal.events.shown)
