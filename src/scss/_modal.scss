@@ -1,5 +1,5 @@
 .#{$backdrop-class} {
-  visibility: hidden;
+  display: none;
   left: 0px;
   top: 0px;
   width: 100%;
@@ -13,7 +13,7 @@
 // used to position modal
 
 .#{$wrapper-class} {
-  visibility: hidden;
+  display: none;
 
   position: fixed;
   overflow: auto;
