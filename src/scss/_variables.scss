@@ -22,13 +22,13 @@ $close-icon-size: 16px !default;
 
 $close-padding: 6px !default;
 
-$close-top: 0;
-$close-right: 0;
-$close-bottom: auto;
-$close-left: auto;
+$close-top: 0 !default;
+$close-right: 0 !default;
+$close-bottom: auto !default;
+$close-left: auto !default;
 
-$close-border-width: 2px;
-$close-border-radius: 6px;
+$close-border-width: 2px !default;
+$close-border-radius: 6px !default;
 
 /* Modal General */
 $max-width: 400px !default;
@@ -46,8 +46,8 @@ $border-color: #000 !default;
 $background: #fff !default;
 $close-color: #8f8f8f !default;
 $close-color-hover: #f27474 !default;
-$close-border-color: #f0f0f0;
-$close-border-color-hover: #dedede;
+$close-border-color: #f0f0f0 !default;
+$close-border-color-hover: #dedede !default;
 
 // dark theme
 $font-color-dark: #fff !default;
@@ -55,5 +55,5 @@ $border-color-dark: #000 !default;
 $background-dark: #262626 !default;
 $close-color-dark: #b5b5b5 !default;
 $close-color-hover-dark: #f27474 !default;
-$close-border-color-dark: #333333;
-$close-border-color-hover-dark: #404040;
+$close-border-color-dark: #333333 !default;
+$close-border-color-hover-dark: #404040 !default;
