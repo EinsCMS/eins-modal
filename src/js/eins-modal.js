@@ -4,16 +4,16 @@ import Velocity from 'velocity-animate/velocity'
 import 'velocity-animate/velocity.ui'
 
 export default {
+  modalClass: 'eins-modal',
   /**
-   * Central class store
+   * Suffixes of all eins-modal elements
    */
-  classes: {
-    backdropClass: 'eins-modal-backdrop',
-    modal: 'eins-modal',
-    modalContent: 'eins-modal-content',
-    openButton: 'eins-modal-button',
-    closeButton: 'eins-modal-close-button',
-    closeIcon: 'eins-modal-close'
+  classSuffixes: {
+    backdrop: '-backdrop',
+    content: '-content',
+    openButton: '-button',
+    closeButton: '-close-button',
+    closeIcon: '-close'
   },
   /**
    * Backdrop element.
@@ -69,8 +69,12 @@ export default {
   openModalEventHandler: null,
   /**
    * Initialize EinsModal
+   * @param {string|null} modalClass class of modal and prefix of all other classes elements
    */
-  init() {
+  init(modalClass = null) {
+    if (modalClass !== null) {
+      this.modalClass = modalClass
+    }
     this.initDefaultState()
 
     this.initEvents()
@@ -87,7 +91,7 @@ export default {
    * Hide all modals on page-load.
    */
   initDefaultState() {
-    const modals = document.getElementsByClassName(this.classes.modal)
+    const modals = document.getElementsByClassName(this.modalClass)
     const modalsLength = modals.length
     if (modalsLength === 0) {
       return
@@ -163,7 +167,7 @@ export default {
    */
   initButtonEvents() {
     const EinsModal = this
-    const openButtons = document.getElementsByClassName(EinsModal.classes.openButton)
+    const openButtons = document.getElementsByClassName(EinsModal.getClass('openButton'))
 
     /* Add event handler to buttons */
     if (openButtons.length > 0) {
@@ -180,7 +184,7 @@ export default {
   createBackdrop() {
     // create and insert backdrop to body
     const backdrop = document.createElement('div')
-    backdrop.className += this.classes.backdropClass
+    backdrop.className += this.getClass('backdrop')
 
     document.getElementsByTagName('body')[0].appendChild(backdrop)
 
@@ -191,11 +195,9 @@ export default {
    * Will add the ".modal()" method to all modal elements if element is null.
    * @param {HTMLElement|null} element modal element.
    */
-  addClosureToModal(element=null) {
+  addClosureToModal(element = null) {
     const modals =
-      typeof element !== 'object' || element === null
-        ? document.getElementsByClassName(this.classes.modal)
-        : [ element ]
+      typeof element !== 'object' || element === null ? document.getElementsByClassName(this.modalClass) : [ element ]
 
     const EinsModal = this
     if (modals === null) {
@@ -306,7 +308,7 @@ export default {
     if (modal === null) {
       return null
     }
-    const modalContent = modal.querySelectorAll('.' + this.classes.modalContent)
+    const modalContent = modal.querySelectorAll('.' + this.getClass('content'))
     if (modalContent.length > 0) {
       return modalContent[0]
     }
@@ -349,6 +351,13 @@ export default {
     }
     return options
   },
+  getClass(classSuffixKey) {
+    if (typeof this.classSuffixes[classSuffixKey] === 'undefined') {
+      this.log('error', 'Class suffix key does not exist!')
+      return null
+    }
+    return this.modalClass + this.classSuffixes[classSuffixKey]
+  },
   /**
    * Helper function to open the modal.
    * @param {HTMLElement} modalToOpen 
@@ -367,11 +376,7 @@ export default {
 
     const options = EinsModal.currentOptions
 
-    if (
-      options === null ||
-      !('openTransition' in options) ||
-      !('openTransitionDuration' in options)
-    ) {
+    if (options === null || !('openTransition' in options) || !('openTransitionDuration' in options)) {
       EinsModal.log('error', 'Current options are malformed.')
       return
     }
@@ -406,13 +411,13 @@ export default {
   open(modalToOpen) {
     const EinsModal = this
 
-    const closeButtons = modalToOpen.querySelectorAll('.' + EinsModal.classes.closeButton)
+    const closeButtons = modalToOpen.querySelectorAll('.' + EinsModal.getClass('closeButton'))
     EinsModal.addListeners(closeButtons, this.closeModalEventHandler)
 
-    const closeIcons = modalToOpen.querySelectorAll('.' + EinsModal.classes.closeIcon)
+    const closeIcons = modalToOpen.querySelectorAll('.' + EinsModal.getClass('closeIcon'))
     EinsModal.addListeners(closeIcons, this.closeModalEventHandler)
 
-    if(this.currentOptions === null){
+    if (this.currentOptions === null) {
       EinsModal.log('warn', 'Something went wrong.. Could not find current options. Using default options instead.')
       this.currentOptions = this.getOptions()
     }
