@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'eins-modal-icons';
+  src:  url('fonts/eins-modal-icons.eot?6tyyjs');
+  src:  url('fonts/eins-modal-icons.eot?6tyyjs#iefix') format('embedded-opentype'),
+    url('fonts/eins-modal-icons.ttf?6tyyjs') format('truetype'),
+    url('fonts/eins-modal-icons.woff?6tyyjs') format('woff'),
+    url('fonts/eins-modal-icons.svg?6tyyjs#eins-modal-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="eins-modal-icon-"], [class*=" eins-modal-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'eins-modal-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.eins-modal-icon-close:before {
+  content: "\e900";
+}

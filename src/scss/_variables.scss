@@ -1,11 +1,14 @@
 /* Classes */
 $class-prefix: eins-modal !default;
-$backdrop-class: #{$class-prefix}-backdrop;
 $wrapper-class: #{$class-prefix};
 $modal-class: #{$class-prefix}-content; // eins-modal
+$backdrop-class: #{$class-prefix}-backdrop;
 $modal-close-class: #{$class-prefix}-close;
 $dark-theme-class: #{$class-prefix}-dark;
-$display-none-class: #{$class-prefix}-d-none;
+
+$lg-class: #{$class-prefix}-lg;
+$sm-class: #{$class-prefix}-sm;
+$xsm-class: #{$class-prefix}-xsm;
 
 /* General */
 $font-size-base: 13px !default;
@@ -17,31 +20,57 @@ $backdrop-z-index: 20000 !default;
 /* Wrapper */
 $wrapper-padding: 15px !default;
 
-/* Close cross */
-$close-font-size: 23px !default;
-$close-font-weight: bold !default;
-$close-margin-left: 95% !default;
-
 /* Modal General */
-$max-width: 400px !default;
+$width: 500px !default;
+$width-lg: 600px !default;
+$width-sm: 400px !default;
+$width-xsm: 300px !default;
 
-$padding: 15px !default;
-$margin: 10% auto !default;
+$padding: 35px !default;
+$padding-lg: 40px !default;
+$padding-sm: 35px !default;
+$padding-xsm: 35px !default;
 
-$border-radius: 6px !default;
 $border-width: 0px !default;
 $border-style: solid !default;
+
+$border-radius: 8px !default;
+$border-radius-lg: 10px !default;
+$border-radius-sm: 8px !default;
+$border-radius-xsm: 8px !default;
+
+/* Close icon */
+$close-icon-size: 19px !default;
+$close-icon-size-lg: 20px !default;
+$close-icon-size-sm: 19px !default;
+$close-icon-size-xsm: 19px !default;
+
+$close-padding: 7px !default;
+$close-padding-lg: 8px !default;
+$close-padding-sm: 7px !default;
+$close-padding-xsm: 7px !default;
+
+$close-top: 0 !default;
+$close-right: 0 !default;
+$close-bottom: auto !default;
+$close-left: auto !default;
+
+$close-border-width: 2px !default;
 
 /* Default Theme */
 $font-color: #000 !default;
 $border-color: #000 !default;
 $background: #fff !default;
-$close-color: #000 !default;
-$close-color-hover: #666 !default;
+$close-color: #8f8f8f !default;
+$close-color-hover: #f27474 !default;
+$close-border-color: #f0f0f0 !default;
+$close-border-color-hover: #dedede !default;
 
 // dark theme
 $font-color-dark: #fff !default;
 $border-color-dark: #000 !default;
 $background-dark: #262626 !default;
 $close-color-dark: #b5b5b5 !default;
-$close-color-hover-dark: #fff !default;
+$close-color-hover-dark: #f27474 !default;
+$close-border-color-dark: #333333 !default;
+$close-border-color-hover-dark: #404040 !default;
