@@ -446,7 +446,7 @@ export default {
 
     const EinsModal = this
 
-    const options = EinsModal.currentOptions === null ? EinsModal.currentOptions : { ...EinsModal.defaultOptions }
+    const options = EinsModal.currentOptions !== null ? EinsModal.currentOptions : { ...EinsModal.defaultOptions }
 
     const modalContent = EinsModal.getModalContentElement(EinsModal.currentOpenModal)
 
