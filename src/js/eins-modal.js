@@ -95,7 +95,7 @@ export default {
     // hide all modals
     for (let i = 0; i < modalsLength; i += 1) {
       const modal = modals[i]
-      modal.style.visibility = 'hidden'
+      modal.style.display = 'none'
     }
   },
   /**
@@ -380,8 +380,8 @@ export default {
       reserveScrollBarGap: true
     })
 
-    EinsModal.backdrop.style.visibility = 'visible'
-    modalToOpen.style.visibility = 'visible'
+    EinsModal.backdrop.style.display = 'block'
+    modalToOpen.style.display = 'block'
 
     this.events.show.relatedTarget = this.currentTrigger
     modalToOpen.dispatchEvent(this.events.show)
@@ -389,8 +389,9 @@ export default {
     Velocity(modalContent, options.openTransition, {
       duration: options.openTransitionDuration,
       complete() {
-        EinsModal.backdrop.style.visibility = 'visible'
-        modalToOpen.style.visibility = 'visible'
+        // changing display is repeated due to fixing a bug..
+        EinsModal.backdrop.style.display = 'block'
+        modalToOpen.style.display = 'block'
         EinsModal.currentOpenModal = modalToOpen
         EinsModal.events.shown.relatedTarget = EinsModal.currentTrigger
         modalToOpen.dispatchEvent(EinsModal.events.shown)
@@ -463,8 +464,8 @@ export default {
           return
         }
         // hide backdrop
-        EinsModal.backdrop.style.visibility = 'hidden'
-        EinsModal.currentOpenModal.style.visibility = 'hidden'
+        EinsModal.backdrop.style.display = 'none'
+        EinsModal.currentOpenModal.style.display = 'none'
         EinsModal.currentOpenModal = null
         clearAllBodyScrollLocks()
       }
