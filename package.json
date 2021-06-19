@@ -1,7 +1,7 @@
 {
   "name": "eins-modal",
-  "version": "1.0.2",
-  "description": "Simple to use cross browser modal and alert. No javascript knowledge required. Supports all browsers IE >= 9.",
+  "version": "1.1.0",
+  "description": "Simple to use modal / alert / dialog / popup. Created with vanilla JS. No javascript knowledge required! Works on every browser and device! IE >= 9",
   "main": "src/js/eins-modal.js",
   "author": "Timucin Ünal",
   "license": "MIT",
