@@ -11,7 +11,6 @@
 }
 
 // used to position modal
-
 .#{$wrapper-class} {
   display: none;
 
@@ -33,7 +32,7 @@
 .#{$modal-class} {
   box-sizing: border-box;
   width: 100%;
-  max-width: $max-width;
+  max-width: $width;
   margin: 15px auto;
 
   background: $background;
@@ -103,7 +102,10 @@
   left: $close-left;
 
   border: $close-border-width solid $close-border-color;
-  border-radius: $close-border-radius;
+
+  border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  -moz-border-radius: $border-radius;
 
   &:hover {
     color: $close-color-hover; //#4a4a4a;
@@ -125,5 +127,53 @@
       color: $close-color-hover-dark;
       border-color: $close-border-color-hover-dark;
     }
+  }
+}
+
+.#{$wrapper-class}.#{$lg-class} > .#{$modal-class} {
+  max-width: $width-lg;
+  padding: $padding-lg;
+  border-radius: $border-radius-lg;
+  -webkit-border-radius: $border-radius-lg;
+  -moz-border-radius: $border-radius-lg;
+
+  .#{$modal-close-class} {
+    font-size: $close-icon-size-lg;
+    width: $close-icon-size-lg;
+    padding: $close-padding-lg;
+  }
+}
+
+.#{$wrapper-class}.#{$sm-class} > .#{$modal-class} {
+  max-width: $width-sm;
+  padding: $padding-sm;
+  border-radius: $border-radius-sm;
+  -webkit-border-radius: $border-radius-sm;
+  -moz-border-radius: $border-radius-sm;
+
+  .#{$modal-close-class} {
+    font-size: $close-icon-size-sm;
+    width: $close-icon-size-sm;
+    padding: $close-padding-sm;
+    border-radius: $border-radius-sm;
+    -webkit-border-radius: $border-radius-sm;
+    -moz-border-radius: $border-radius-sm;
+  }
+}
+
+.#{$wrapper-class}.#{$xsm-class} > .#{$modal-class} {
+  max-width: $width-xsm;
+  padding: $padding-xsm;
+  border-radius: $border-radius-xsm;
+  -webkit-border-radius: $border-radius-xsm;
+  -moz-border-radius: $border-radius-xsm;
+
+  .#{$modal-close-class} {
+    font-size: $close-icon-size-xsm;
+    width: $close-icon-size-xsm;
+    padding: $close-padding-xsm;
+    border-radius: $border-radius-xsm;
+    -webkit-border-radius: $border-radius-xsm;
+    -moz-border-radius: $border-radius-xsm;
   }
 }
