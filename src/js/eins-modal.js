@@ -524,10 +524,24 @@ export default {
         // dispatch hidden event
         EinsModal.events.hidden.relatedTarget = EinsModal.current.trigger
         EinsModal.current.openModal.dispatchEvent(EinsModal.events.hidden)
-        // set current state
-        EinsModal.current.trigger = null
 
         EinsModal.showScrollbar(EinsModal.current.openModal)
+
+        // scroll modal to top or modal will jump to scroll position if reopened
+        EinsModal.current.openModal.style.visibility = 'hidden'
+        modalContent.style.display = 'block'
+
+        EinsModal.current.openModal.scrollTop = 0
+
+        modalContent.style.display = 'none'
+        EinsModal.current.openModal.style.visibility = 'visible'
+
+        // set current state
+        EinsModal.current.trigger = null
+        EinsModal.current.openModal.style.display = 'none'
+        EinsModal.current.openModal = null
+
+        clearAllBodyScrollLocks()
 
         // open a new modal without hiding backdrop for smooth transition
         if (modalToOpen !== null) {
@@ -536,9 +550,6 @@ export default {
         }
         // hide backdrop
         EinsModal.backdrop.style.display = 'none'
-        EinsModal.current.openModal.style.display = 'none'
-        EinsModal.current.openModal = null
-        clearAllBodyScrollLocks()
       }
     })
     return true
