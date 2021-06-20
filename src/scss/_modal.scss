@@ -99,6 +99,8 @@
   -webkit-border-radius: $border-radius;
   -moz-border-radius: $border-radius;
 
+  box-sizing: content-box;
+
   &:hover {
     color: $close-color-hover; //#4a4a4a;
     border-color: $close-border-color-hover;
