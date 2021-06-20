@@ -395,7 +395,7 @@ export default {
     }
 
     // disable scrollbar to fix scrollbar bug on some animations
-    modal.style.overflow = 'hidden'
+    modal.style.overflow = 'visible'
 
     this.current.modalPaddingRight = modalPaddingRight
   },
