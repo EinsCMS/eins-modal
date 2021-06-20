@@ -395,6 +395,7 @@ export default {
     }
 
     // disable scrollbar to fix scrollbar bug on some animations
+    modal.style.marginTop = '-' + modal.scrollTop + 'px'
     modal.style.overflow = 'visible'
 
     this.current.modalPaddingRight = modalPaddingRight
@@ -406,6 +407,7 @@ export default {
   showScrollbar(modal) {
     modal.style.paddingRight = this.current.modalPaddingRight + 'px'
     modal.style.overflow = 'auto'
+    modal.style.marginTop = '0px'
     this.current.modalPaddingRight = null
   },
   /**
