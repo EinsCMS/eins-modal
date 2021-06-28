@@ -19,6 +19,7 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 8080,
+    host: '0.0.0.0'
   },
 
   module: {
@@ -28,16 +29,16 @@ module.exports = merge(common, {
         test: /\.(scss|css)$/,
         use: [
           'style-loader',
-          {loader: 'css-loader', options: {sourceMap: true, importLoaders: 1, modules: false }},
-          {loader: 'postcss-loader', options: {sourceMap: true}},
-          {loader: 'sass-loader', options: {sourceMap: true}},
-        ],
-      },
+          { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1, modules: false } },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
+      }
     ]
   },
 
   plugins: [
     // Only update what has changed on hot reload
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+    new webpack.HotModuleReplacementPlugin()
+  ]
 })
