@@ -1,12 +1,13 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin');
-const paths = require('./paths');
+const ESLintPlugin = require('eslint-webpack-plugin')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
+const paths = require('./paths')
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: { 
-    "eins-modal": paths.src + '/index.js' 
+  entry: {
+    'eins-modal': paths.src + '/index.js'
   },
 
   // Where webpack outputs the assets and bundles
@@ -28,8 +29,8 @@ module.exports = {
       // The environment supports 'for of' iteration ('for (const x of array) { ... }').
       forOf: false,
       // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
-      module: false,
-    },
+      module: false
+    }
   },
 
   // Customize the webpack build process
@@ -54,6 +55,19 @@ module.exports = {
 
     // Prettier configuration
     // new PrettierPlugin()
+    new CircularDependencyPlugin({
+      // exclude detection of files based on a RegExp
+      exclude: /a\.js|node_modules/,
+      // include specific files based on a RegExp
+      include: /dir/,
+      // add errors to webpack instead of warnings
+      failOnError: true,
+      // allow import cycles that include an asyncronous import,
+      // e.g. via import(/* webpackMode: "weak" */ './file.js')
+      allowAsyncCycles: false,
+      // set the current working directory for displaying module paths
+      cwd: process.cwd()
+    })
   ],
 
   // Determine how modules within the project are treated
@@ -69,4 +83,4 @@ module.exports = {
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' }
     ]
   }
-};
+}

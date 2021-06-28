@@ -5,6 +5,7 @@ $modal-class: #{$class-prefix}-content; // eins-modal
 $backdrop-class: #{$class-prefix}-backdrop;
 $modal-close-class: #{$class-prefix}-close;
 $dark-theme-class: #{$class-prefix}-dark;
+$fill-scrollbar-gap-class: fill-scrollbar-gap !default;
 
 $lg-class: #{$class-prefix}-lg;
 $sm-class: #{$class-prefix}-sm;
@@ -12,7 +13,7 @@ $xsm-class: #{$class-prefix}-xsm;
 
 /* Backdrop */
 $backdrop-background: rgba(0, 0, 0, 0.6) !default;
-$backdrop-z-index: 20000 !default;
+$backdrop-z-index: 100 !default;
 
 /* Wrapper */
 $wrapper-padding: 15px !default;
@@ -58,6 +59,7 @@ $close-border-width: 2px !default;
 $font-color: #000 !default;
 $border-color: #000 !default;
 $background: #fff !default;
+
 $close-color: #8f8f8f !default;
 $close-color-hover: #f27474 !default;
 $close-border-color: #f0f0f0 !default;
@@ -67,6 +69,7 @@ $close-border-color-hover: #dedede !default;
 $font-color-dark: #fff !default;
 $border-color-dark: #000 !default;
 $background-dark: #262626 !default;
+
 $close-color-dark: #b5b5b5 !default;
 $close-color-hover-dark: #f27474 !default;
 $close-border-color-dark: #333333 !default;

@@ -31,11 +31,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  // -webkit-transform: translate3d(0, 0, 0);
 
   width: 100%;
   max-height: 100%;
 
-  z-index: $backdrop-z-index + 100;
+  z-index: $backdrop-z-index + 1;
   padding: 0 15px;
 
   box-sizing: border-box;
@@ -182,4 +184,8 @@
     -webkit-border-radius: $border-radius-xsm;
     -moz-border-radius: $border-radius-xsm;
   }
+}
+
+.#{$fill-scrollbar-gap-class} {
+  box-sizing: border-box;
 }

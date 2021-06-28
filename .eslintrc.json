@@ -5,11 +5,11 @@
       "error",
       {
         "ignoreUrls": true,
-        "code": 80
+        "code": 120
       }
     ],
     "prefer-template": "off",
-    "indent": [1, 2],
+    "indent": [1, 2, {"SwitchCase": 1}],
     "object-curly-spacing": 1,
     "no-multiple-empty-lines": [
       1,
@@ -29,6 +29,7 @@
     "import/prefer-default-export": 0,
     "func-names": [1, "as-needed"],
     "arrow-body-style": 1,
+    "no-underscore-dangle": 0,
     "semi": [1, "never"],
     "import/no-extraneous-dependencies": ["off", { "devDependencies": false }]
   },
