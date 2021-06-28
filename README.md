@@ -10,9 +10,9 @@
 
 ## Full Documentation: [https://www.einscms.com/modal](https://www.einscms.com/modal)
 
-EinsModal is the best solution if you want to interact with your user.
+EinsModal is the best solution to interact with your users.
 
-It works on ever browser and device! (Internet Explorer >= 9)
+It works on every browser and device! (Internet Explorer >= 9)
 
 "Eins" is german and means "one".
 
@@ -32,7 +32,7 @@ Every Eins-Software-Product aims to be the one and only software solution you wi
 
 - 💪 **Actively Maintained**
 
-  The modal is always up to date!
+  The software is always up to date!
 
 - 🌈 **Works with all mobile and desktop Browsers**
 
@@ -40,11 +40,11 @@ Every Eins-Software-Product aims to be the one and only software solution you wi
 
 - 🍰 **Easy to use and robust**
 
-  Eating a cake is more difficult than EinsModal 😂
+  Eating a cake is more difficult than using EinsModal 😂
 
 - 😎 **Can display every type of HTML**
 
-  Yes, you can!
+  Yes, it can!
 
 - 🚀 **No Javascript knowledge required**
 
@@ -52,9 +52,9 @@ Every Eins-Software-Product aims to be the one and only software solution you wi
 
 - 🔥 **Easy to Customize & Extend**
 
-  EinsModal has just a small amount of CSS. Means overriding it or extending it soo easy!
+  EinsModal has just a small amount of CSS. Means overriding it or extending it very easy!
 
-  You can also use the SCSS file if you want to
+  You can also use the SCSS file if you want to.
 
   EinsModal provides everything you need to interact with it via JS. Means there are no limits regarding extending and using!
 
@@ -79,7 +79,8 @@ import 'eins-modal/dist/css/eins-modal.min.css'
 
 // javascript
 import EinsModal from 'eins-modal';
-EinsModal.init();
+// OR
+import 'eins-modal';
 ```
 
 ### Without NPM
