@@ -54,7 +54,6 @@
   },
   "homepage": "https://www.einscms.com/modal",
   "dependencies": {
-    "circular-dependency-plugin": "^5.2.2",
     "scroll-lock": "^2.1.5",
     "velocity-animate": "^1.5.2"
   }
