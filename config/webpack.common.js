@@ -5,7 +5,8 @@ const paths = require('./paths')
 module.exports = {
   // Where webpack looks to start building the bundle
   entry: {
-    'eins-modal': paths.src + '/index.js'
+    'eins-modal': paths.src + '/index.js',
+    'eins-modal-plain': paths.src + '/index-plain.js'
   },
 
   // Where webpack outputs the assets and bundles
