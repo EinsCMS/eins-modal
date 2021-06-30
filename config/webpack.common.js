@@ -1,13 +1,12 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
-const CircularDependencyPlugin = require('circular-dependency-plugin')
 const paths = require('./paths')
 
 module.exports = {
   // Where webpack looks to start building the bundle
   entry: {
-    'eins-modal': paths.src + '/index.js'
+    'eins-modal': paths.src + '/index.js',
+    'eins-modal-plain': paths.src + '/index-plain.js'
   },
 
   // Where webpack outputs the assets and bundles
@@ -38,35 +37,10 @@ module.exports = {
     // Removes/cleans build folders and unused assets when rebuilding
     new CleanWebpackPlugin(),
 
-    // Generates an HTML file from a template
-    new HtmlWebpackPlugin({
-      title: 'EinsModal Demo',
-      // favicon: paths.src + '/images/favicon.png',
-      template: paths.src + '/template.html', // template file
-      filename: 'index.html', // output file
-      minify: true
-    }),
-
     // ESLint configuration
     new ESLintPlugin({
       files: [ '.', 'src', 'config' ],
       formatter: 'table'
-    }),
-
-    // Prettier configuration
-    // new PrettierPlugin()
-    new CircularDependencyPlugin({
-      // exclude detection of files based on a RegExp
-      exclude: /a\.js|node_modules/,
-      // include specific files based on a RegExp
-      include: /dir/,
-      // add errors to webpack instead of warnings
-      failOnError: true,
-      // allow import cycles that include an asyncronous import,
-      // e.g. via import(/* webpackMode: "weak" */ './file.js')
-      allowAsyncCycles: false,
-      // set the current working directory for displaying module paths
-      cwd: process.cwd()
     })
   ],
 

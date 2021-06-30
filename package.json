@@ -1,8 +1,8 @@
 {
   "name": "eins-modal",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Simple to use modal / alert / dialog / popup. Created with vanilla JS. No javascript knowledge required! Works on every browser and device! IE >= 9",
-  "main": "src/js/eins-modal.js",
+  "main": "src/eins-modal.js",
   "author": "Timucin Ünal",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,6 @@
     "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-webpack-plugin": "^2.1.0",
-    "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.4.0",
     "node-sass": "^5.0.0",
     "postcss-loader": "^5.2.0",
@@ -54,7 +53,6 @@
   },
   "homepage": "https://www.einscms.com/modal",
   "dependencies": {
-    "circular-dependency-plugin": "^5.2.2",
     "scroll-lock": "^2.1.5",
     "velocity-animate": "^1.5.2"
   }
