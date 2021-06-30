@@ -1,6 +1,6 @@
 {
   "name": "eins-modal",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Simple to use modal / alert / dialog / popup. Created with vanilla JS. No javascript knowledge required! Works on every browser and device! IE >= 9",
   "main": "src/eins-modal.js",
   "author": "Timucin Ünal",
