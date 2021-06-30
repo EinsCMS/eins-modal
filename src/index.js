@@ -1,6 +1,6 @@
 // Style
 import './scss/style.scss'
 
-import './js/eins-modal'
+import './eins-modal'
 
 // Modal.init()

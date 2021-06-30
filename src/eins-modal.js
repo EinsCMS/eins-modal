@@ -1,10 +1,10 @@
 // initialize all elements
-import './initialize-elements'
+import './js/initialize-elements'
 
-import Log from './log'
-import EventHelper from './event-helper'
-import Modal from './modal'
-import addModalFunction from './modal-function'
+import Log from './js/log'
+import EventHelper from './js/event-helper'
+import Modal from './js/modal'
+import addModalFunction from './js/modal-function'
 
 const EinsModal = {
   /**
