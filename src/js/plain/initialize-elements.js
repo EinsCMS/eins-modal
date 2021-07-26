@@ -45,7 +45,11 @@ function fillScrollbarGap() {
   addFillGapSelector('.' + Elements.fillScrollbarGapClass)
 }
 
-hideModals()
-initButtons()
-initModalClosures()
-fillScrollbarGap()
+const initializeElements = function() {
+  hideModals()
+  initButtons()
+  initModalClosures()
+  fillScrollbarGap()
+}
+
+export default initializeElements
