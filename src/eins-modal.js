@@ -1,5 +1,5 @@
 // initialize all elements
-import './js/initialize-elements'
+import initializeElements from './js/initialize-elements'
 
 import Log from './js/log'
 import EventHelper from './js/event-helper'
@@ -92,7 +92,10 @@ const EinsModal = {
   }
 }
 
-window.einsModal = EinsModal
-EventHelper.dispatchGlobal()
+window.onload = () => {
+  initializeElements()
+  window.einsModal = EinsModal
+  EventHelper.dispatchGlobal()
+}
 
 export default EinsModal
