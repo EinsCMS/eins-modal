@@ -92,10 +92,10 @@ const EinsModal = {
   }
 }
 
-window.onload = () => {
+window.addEventListener('load', () => {
   initializeElements()
   window.einsModal = EinsModal
   EventHelper.dispatchGlobal()
-}
+})
 
 export default EinsModal
