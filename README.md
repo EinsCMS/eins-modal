@@ -70,8 +70,8 @@ We needed a solution that is **production ready**, **easy to use**, **extensible
 
 - 👻 **Lightweight**
 
-  `eins-modal` is 26 KB (gzipped) \
-  `eins-modal-plain` is 8 KB (gzipped)
+  `eins-modal` is **26 KB** (gzipped) \
+  `eins-modal-plain` is **8 KB** (gzipped)
 
 - ✏️ **Well documented**
     
@@ -143,7 +143,7 @@ import 'eins-modal';
 </body>
 ```
 
-### EinsModal without animations
+### EinsModal without animations (eins-modal-plain)
 
 If you want a **smaller file size** and just need a modal you can use EinsModal without any animations.
 
