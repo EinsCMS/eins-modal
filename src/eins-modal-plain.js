@@ -1,5 +1,5 @@
 // initialize all elements
-import initializeElements from './js/initialize-elements'
+import initializeElements from './js/plain/initialize-elements'
 
 import Log from './js/log'
 import EventHelper from './js/event-helper'
