@@ -44,7 +44,7 @@ We needed a solution that is **production ready**, **easy to use**, **extensible
 
     EinsModal is production ready and stable.
 
-    We sometimes need a Modal to display or provide critical information and functionality to our users. So it has to work in 100% of the time. Bugs are not acceptable.
+    We sometimes need a Modal to display or provide critical information and functionality to our users. So it has to work 100% of the time. Bugs are not acceptable.
 
 4. Easy to use
 
@@ -56,7 +56,7 @@ We needed a solution that is **production ready**, **easy to use**, **extensible
 
     EinsModal provides a developer-friendly api that allows you to extend and use the libraries in many different ways.
 
-    It also has just a small amount of CSS / SCSS. Overriding or extending it very easy!
+    It also has just a small amount of CSS / SCSS. Overriding or extending it is very easy!
 
 ## Features
 
@@ -95,7 +95,7 @@ We needed a solution that is **production ready**, **easy to use**, **extensible
 
 - 🔥 **Easy to Customize & Extend**
 
-  EinsModal has just a small amount of CSS. Means overriding it or extending it very easy!
+  EinsModal has just a small amount of CSS. Means overriding it or extending it is very easy!
 
   You can also use the SCSS file if you want to.
 
@@ -182,11 +182,11 @@ import 'eins-modal/src/eins-modal-plain';
 </body>
 ```
 
-## Types / Typescript
+## Type definitions / Typescript
 
-EinsModal now also provides types to use it with Typescript.
+EinsModal provides type definitions. They are especially helpful when using Typescript.
 
-Just install the following package to get the types:
+Just install the following package to get the type definitions:
 
 [@types/eins-modal](https://www.npmjs.com/package/@types/eins-modal)
 ```bash
